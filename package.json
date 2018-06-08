@@ -1,5 +1,5 @@
 {
-  "name": "tree-kill",
+  "name": "tree-kill-sync",
   "version": "1.2.0",
   "description": "kill trees of processes",
   "main": "index.js",
@@ -12,9 +12,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/pkrumins/node-tree-kill.git"
+    "url": "git://github.com/orangain/node-tree-kill-sync.git"
   },
-  "homepage": "https://github.com/pkrumins/node-tree-kill",
+  "homepage": "https://github.com/orangain/node-tree-kill-sync",
   "keywords": [
     "tree",
     "trees",
@@ -24,11 +24,15 @@
     "signal"
   ],
   "author": {
-    "name": "Peteris Krumins",
-    "email": "peteris.krumins@gmail.com",
-    "url": "http://www.catonmat.net"
+    "name": "orangain",
+    "email": "orangain@gmail.com"
   },
   "contributors": [
+    {
+      "name": "Peteris Krumins",
+      "email": "peteris.krumins@gmail.com",
+      "url": "http://www.catonmat.net"
+    },
     {
       "name": "Todd Wolfson",
       "email": "todd@twolfson.com",
