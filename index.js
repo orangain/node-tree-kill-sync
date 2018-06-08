@@ -4,26 +4,21 @@ var childProcess = require('child_process');
 var spawnSync = childProcess.spawnSync;
 var execSync = childProcess.execSync;
 
-module.exports = function (pid, signal, callback) {
+module.exports = function (pid, signal) {
     var tree = {};
     var pidsToProcess = {};
     tree[pid] = [];
     pidsToProcess[pid] = 1;
-    
-    if (typeof signal === 'function' && callback === undefined) {
-      callback = signal;
-      signal = undefined;
-    }
 
     switch (process.platform) {
     case 'win32':
-        execSync('taskkill /pid ' + pid + ' /T /F', callback);
+        execSync('taskkill /pid ' + pid + ' /T /F');
         break;
     case 'darwin':
         buildProcessTree(pid, tree, pidsToProcess, function (parentPid) {
           return spawnSync('pgrep', ['-P', parentPid]);
         });
-        killAll(tree, signal, callback);
+        killAll(tree, signal);
         break;
     // case 'sunos':
     //     buildProcessTreeSunOS(pid, tree, pidsToProcess, function () {
@@ -34,12 +29,12 @@ module.exports = function (pid, signal, callback) {
         buildProcessTree(pid, tree, pidsToProcess, function (parentPid) {
           return spawnSync('ps', ['-o', 'pid', '--no-headers', '--ppid', parentPid]);
         });
-        killAll(tree, signal, callback);
+        killAll(tree, signal);
         break;
     }
 };
 
-function killAll (tree, signal, callback) {
+function killAll (tree, signal) {
     var killed = {};
     try {
         Object.keys(tree).forEach(function (pid) {
@@ -55,14 +50,7 @@ function killAll (tree, signal, callback) {
             }
         });
     } catch (err) {
-        if (callback) {
-            return callback(err);
-        } else {
-            throw err;
-        }
-    }
-    if (callback) {
-        return callback();
+        throw err;
     }
 }
 

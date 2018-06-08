@@ -13,22 +13,4 @@ describe('kill()', function(){
         });
         kill(p.pid)
     })
-
-    it('should call a callback', function(done){ 
-        var p = fork('./test/spin')
-        assert.ok(p.pid)
-
-        kill(p.pid, null, function() {
-            return done()
-        })
-    })
-    
-    it('should work if signal is left out', function(done){ 
-        var p = fork('./test/spin')
-        assert.ok(p.pid)
-
-        kill(p.pid, function() {
-            return done()
-        })
-    })
 })
