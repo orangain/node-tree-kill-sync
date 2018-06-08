@@ -1,42 +1,34 @@
-Tree Kill
-=========
+Tree Kill Sync
+==============
 
-Kill all processes in the process tree, including the root process.
+Synchronous version of [node-tree-kill](https://github.com/pkrumins/node-tree-kill). Kill all processes in the process tree, including the root process.
 
 Examples
 =======
 
 Kill all the descendent processes of the process with pid `1`, including the process with pid `1` itself:
 ```js
-var kill = require('tree-kill');
+var kill = require('tree-kill-sync');
 kill(1);
 ```
 
 Send a signal other than SIGTERM.:
 ```js
-var kill = require('tree-kill');
+var kill = require('tree-kill-sync');
 kill(1, 'SIGKILL');
 ```
 
-Run a callback when done killing the processes. Passes an error argument if there was an error.
-```js
-var kill = require('tree-kill');
-kill(1, 'SIGKILL', function(err) {
-    // Do things
-});
-```
-
-You can also install tree-kill globally and use it as a command:
+You can also install tree-kill-sync globally and use it as a command:
 ```sh
-tree-kill 1          # sends SIGTERM to process 1 and its descendents
-tree-kill 1 SIGTERM  # same
-tree-kill 1 SIGKILL  # sends KILL instead of TERMINATE
+tree-kill-sync 1          # sends SIGTERM to process 1 and its descendents
+tree-kill-sync 1 SIGTERM  # same
+tree-kill-sync 1 SIGKILL  # sends KILL instead of TERMINATE
 ```
 
 Methods
 =======
 
-## require('tree-kill')(pid, [signal], [callback]);
+## require('tree-kill-sync')(pid, [signal]);
 
 Sends signal `signal` to all children processes of the process with pid `pid`, including `pid`. Signal defaults to `SIGTERM`.
 
@@ -52,7 +44,7 @@ Install
 With [npm](https://npmjs.org) do:
 
 ```
-npm install tree-kill
+npm install tree-kill-sync
 ```
 
 License

@@ -5,7 +5,7 @@
   "main": "index.js",
   "types": "index.d.ts",
   "bin": {
-    "tree-kill": "cli.js"
+    "tree-kill-sync": "cli.js"
   },
   "scripts": {
     "test": "mocha"
